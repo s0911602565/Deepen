@@ -25,10 +25,4 @@ public class MyController {
         return "(handle/obj) " +user.getUsername() + " " +user.getPwd();
     }
 
-    /* http://127.0.0.1:8080/form.html */
-    @RequestMapping("/json")
-    public String getMessage3(@RequestBody User user){
-        System.out.println(user);
-        return "(handle/json)";
-    }
 }

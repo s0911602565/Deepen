@@ -10,13 +10,12 @@
     密碼:<input type="text" name="pwd" ><br>
     <input type="button" value="handle" onclick="goController(this);"><br>
       <input type="button" value="handle/obj" onclick="goController(this);"><br>
-      <input type="button" value="handle/json" onclick="goController(this);"><br>
   </form>
     <script>
         function goController(obj){
-            form1.action = obj.value;
-            form1.method = 'post';
-            form1.submit();
+            document.form1.action = obj.value;
+            document.form1.method = 'post';
+            document.form1.submit();
         }
 
 
