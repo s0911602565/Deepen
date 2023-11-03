@@ -8,7 +8,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/handle")
 public class MyController {
-    /* http://127.0.0.1:8080/form.html */
+    /* http://127.0.0.1:8080/form.html 測試 */
     @RequestMapping
     public String getMessage(
             @RequestParam(
