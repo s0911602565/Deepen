@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="form1" id="form1"  enctype="multipart/form-data">
+    <input type="file" name="filez"/><br>
+    <input type="file" name="filez"/><br>
+    單一檔案(第一個)<input type="button" value="handle/files" onclick="sendMessage(this);" /><br>
+    多檔案<input type="button" value="handle/files2" onclick="sendMessage(this);" /><br>
+
+</form>
+
+<script>
+    function sendMessage(obj){
+        document.form1.action = obj.value;
+        document.form1.method = 'post';
+        document.form1.submit();
+    }
+
+</script>
+</body>
+</html>

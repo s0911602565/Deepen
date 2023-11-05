@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="form1" id="form1"  >
+    測試 User-Agent 的資訊<input type="button" value="handle/head" onclick="sendMessage(this)" /><br>
+    測試 全部資訊<input type="button" value="handle/head2" onclick="sendMessage(this)" /><br>
+</form>
+
+<script>
+    function sendMessage(obj){
+        document.form1.action = obj.value;
+        document.form1.method = 'post';
+        document.form1.submit();
+    }
+
+</script>
+</body>
+</html>
