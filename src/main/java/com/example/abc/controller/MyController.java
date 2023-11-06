@@ -7,6 +7,7 @@ package com.example.abc.controller;
 @RequestPart 上傳檔案
 @RequestHeader 標頭-資訊
 * */
+import com.example.abc.model.Amt;
 import com.example.abc.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class MyController {
     /* http://127.0.0.1:8080/form.html */
     @RequestMapping("/obj")
     public String getMessage2(User user){
-        return "(handle/obj) " +user.getUsername() + " " +user.getPwd();
+        return "getMessage2: " +user.getUsername() + " " +user.getPwd();
     }
 
 
@@ -44,7 +45,7 @@ public class MyController {
     public String getMessage3(
             @PathVariable("id") String p_Id,
             @PathVariable("userName") String p_UserName  ){
-        return "getMessage3 "+p_UserName+ " "+  p_Id;
+        return "getMessage3: "+p_UserName+ " "+  p_Id;
     }
 
     /*
@@ -67,8 +68,8 @@ public class MyController {
     */
     @RequestMapping("/json2")
     public void getJson2(@RequestBody User user){
-        System.out.println(user.getUsername());
-        System.out.println(user.getPwd());
+        System.out.println("getJson2:"+user.getUsername());
+        System.out.println("getJson2:"+user.getPwd());
     }
 
 
@@ -77,7 +78,7 @@ public class MyController {
     public String getMessage4(@PathVariable Map pathMap){/* http://127.0.0.1:8080/form.html */
         System.out.println(pathMap.get("id"));
         System.out.println(pathMap.get("userName"));
-        return "getMessage4 "+pathMap;
+        return "getMessage4: "+pathMap;
     }
 
     //檔案上傳(1個)
@@ -87,7 +88,7 @@ public class MyController {
         System.out.println(mf.getOriginalFilename());
         System.out.println(mf.getSize());
         System.out.println();
-        return "myFile paht";
+        return "getMessage5: ";
     }
 
     //檔案上傳(n個)
@@ -101,7 +102,7 @@ public class MyController {
             System.out.println(mfs.getSize());
             System.out.println("----------");
         }
-        return "myFile paht";
+        return "getMessage6: ";
     }
 
     /*取得(User-Agent)標頭-資訊 Head */
@@ -109,7 +110,7 @@ public class MyController {
     @RequestMapping("/head")
     public String getMessage7(@RequestHeader("User-Agent")String ua){
         System.out.println(ua);
-        return "my Head:"+ua;
+        return "getMessage7:"+ua;
     }
 
     /*取得(所有)標頭-資訊 Head */
@@ -117,7 +118,17 @@ public class MyController {
     @RequestMapping("/head2")
     public String getMessage8(@RequestHeader Map ua){
         System.out.println(ua);
-        return "my Head2:"+ua;
+        return "getMessage8: "+ua;
+    }
+
+    /*取得日期 */
+    /* http://127.0.0.1:8080/index3.html */
+    @RequestMapping("/mydate")
+    public String getMessage9(User user , Amt amt){
+        System.out.println(user.getBirthdayA());
+        System.out.println(amt.getId() + " " + amt.getMoney());
+
+        return "getMessage9: "+user.getBirthdayA();
     }
 
 }
