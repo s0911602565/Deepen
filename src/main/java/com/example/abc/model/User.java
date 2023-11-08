@@ -12,7 +12,7 @@ public class User {
     private String username;
     private String pwd;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDate birthdayA;
     public User(){
 
