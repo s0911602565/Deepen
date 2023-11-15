@@ -1,5 +1,7 @@
 package com.example.abc.controller;
-
+/*
+ModelAndView
+* */
 import com.example.abc.model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +23,8 @@ public class MyController2 {
 
         boolean flag = false;
         if(flag)
-            return method1(obj);
-            return method2(obj);
+            return method1(obj);//ModelAndView 方法1
+            return method2(obj);//ModelAndView 方法2
 
     }
     public ModelAndView method1(User obj){

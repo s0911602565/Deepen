@@ -15,6 +15,8 @@ public class User {
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDate birthdayA;
     public User(){
-
+        this.setUsername("測試 ModelAttribute username");
+        this.setPwd("測試 ModelAttribute pwd");
     }
+
 }
