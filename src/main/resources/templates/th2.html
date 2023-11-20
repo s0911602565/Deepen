@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 放在 messages_zh.properties -->
+    <p th:text="#{greeting}"> </p>
+    <!-- 類似JSP用法 ,輸出8080 -->
+    <p th:utext="${#request.serverPort}"></p>
+    <!-- 取得 User 欄位值-->
+    <p th:text="${#request.getAttribute('user').username}"></p>
+    <p th:text="${#request.getAttribute('user').pwd}"></p>
+
+
+    <!-- thymelear 普通字串  -->
+    <input th:value="${x2}"/>
+    <!-- thymelear 字串解析 -->
+    <p th:utext="${x}"></p>
+
+</body>
+</html>
