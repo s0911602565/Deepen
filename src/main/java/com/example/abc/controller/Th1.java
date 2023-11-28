@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class MyController2 {
+public class Th1 {
     /* 127.0.0.1:8080/ex1 */
     @RequestMapping("ex1")
     public ModelAndView getMessage1(){

@@ -14,10 +14,11 @@
     <p th:text="${#request.getAttribute('user').pwd}"></p>
 
 
+    <!-- thymelear 解析tag -->
+    <p th:utext="${x}"></p>
     <!-- thymelear 普通字串  -->
     <input th:value="${x2}"/>
-    <!-- thymelear 字串解析 -->
-    <p th:utext="${x}"></p>
+
 
 </body>
 </html>
