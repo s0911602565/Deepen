@@ -1,5 +1,7 @@
 package com.example.abc.controller;
 /*
+@Controller     (O)轉HTML
+@RestController (X)轉HTML
 
 @RequestParam
 @PathVariable
