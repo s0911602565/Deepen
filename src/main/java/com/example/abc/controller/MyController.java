@@ -80,7 +80,20 @@ public class MyController {
     /*
     以下貼到post man
     使用網址取得資訊  http://127.0.0.1:8080/handle/json7
-
+    [
+        {
+            "pwd": "100",
+            "username": "嗨1"
+        },
+        {
+            "pwd": "200",
+            "username": "嗨2"
+        },
+        {
+            "pwd": "300",
+            "username": "嗨3"
+        }
+    ]
     */
 
     @RequestMapping("/json7")
