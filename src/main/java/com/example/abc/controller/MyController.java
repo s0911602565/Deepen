@@ -207,4 +207,22 @@ public class MyController {
         return "getMessage9: " + user.getBirthdayA();
     }
 
+    /*
+    在post man
+    選用:Get
+    網址:http://127.0.0.1:8080/handle/getMessageA1
+    即可看到200:OK / 201:CREATED
+
+    */
+    @RequestMapping("/getMessageA1")
+    public ResponseEntity<User> getMessageA1() {
+        User user = new User();
+        user.setUsername("john");
+        user.setPwd("123");
+        user.setPwd2("123");
+        user.setBirthdayA(null);
+        return new ResponseEntity<User>(user , HttpStatus.OK);
+        //return new ResponseEntity<User>(user , HttpStatus.CREATED);
+
+    }
 }
