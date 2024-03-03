@@ -63,7 +63,8 @@ public class MyController {
     }
 
     /*
-    以下貼到post man , 以及使用網址進行取得資料  http://127.0.0.1:8080/handle/json2
+    以下貼到post man
+    使用網址取得資訊  http://127.0.0.1:8080/handle/json2
     {
     "username":"john",
     "pwd":"123"
@@ -73,6 +74,23 @@ public class MyController {
     public void getJson2(@RequestBody User user) {
         System.out.println("getJson2:" + user.getUsername());
         System.out.println("getJson2:" + user.getPwd());
+    }
+
+
+    /*
+    以下貼到post man
+    使用網址取得資訊  http://127.0.0.1:8080/handle/json7
+
+    */
+
+    @RequestMapping("/json7")
+    public void getJson7(@RequestBody List<User> user) {
+        for(User u : user){
+            System.out.println("getJson7:" + u.getUsername());
+            System.out.println("getJson7:" + u.getPwd());
+            System.out.println("-------");
+        }
+
     }
 
     /*
