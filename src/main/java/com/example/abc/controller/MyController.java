@@ -1,6 +1,6 @@
 package com.example.abc.controller;
 /*
-@Controller     (O)轉HTML
+@Controller     (O)轉HTML 舉例 return "index" 會成功
 @RestController (X)轉HTML
 
 @RequestParam

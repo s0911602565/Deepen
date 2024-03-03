@@ -18,11 +18,12 @@ public class Index4 {
     * */
     @RequestMapping("getMessage1")
     public String getMessage1(@Valid User user , BindingResult r) {
-        if(r.hasErrors()){
+        System.out.println("come on");
+        /*if(r.hasErrors()){
             System.out.println("只要沒填寫 username 或介於 4-6字元 就會= True ");
         }else{
             System.out.println(user.getUsername());
-        }
+        }*/
         return "Index4_getMessage1:";
     }
 
