@@ -21,10 +21,11 @@ public class Th1 {
 
         //ModelAndView m = new ModelAndView("th1"); //這個OK
 
-        boolean flag = false;
+        int x = 1;
+        boolean flag = x<0;
         if(flag)
             return method1(obj);//ModelAndView 方法1
-            return method2(obj);//ModelAndView 方法2
+        return method2(obj);//ModelAndView 方法2
 
     }
     public ModelAndView method1(User obj){

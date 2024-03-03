@@ -1,5 +1,6 @@
 package com.example.abc.controller.jsp;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,8 +13,16 @@ public class Zx1 {
      * */
     @RequestMapping("zx1_method1")
     public ModelAndView zx1_method1(){
-        //String 無法轉頁
+        //@RestController 使用String 無法轉頁
         ModelAndView m = new ModelAndView("zx1");
+        return m;
+    }
+
+
+    @RequestMapping("/zx1_method2/{id}")
+    public ModelAndView zx1_method2(@PathVariable String id , ModelAndView m){
+        System.out.println("zx1 show id:"+id);
+        m.setViewName("zx1");
         return m;
     }
 }

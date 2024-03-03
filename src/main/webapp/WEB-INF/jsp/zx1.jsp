@@ -21,5 +21,11 @@ STEP3
     <artifactId>tomcat-embed-jasper</artifactId>
 </dependency>
 -->
+
+
+<form name="form1" id="form1" action="/zx1/zx1_method2/100" method="post" >
+    <input type="submit" id="btn"  value="按鈕" >
+</form>
+
 </body>
 </html>
