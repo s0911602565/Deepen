@@ -39,8 +39,7 @@ public class Zx3 extends SimpleTagSupport {
     public String zx3_method1(Model m){
         Map<String , String> map = new TreeMap<String , String>();
         map.put("z001" , "x001");
-        map.put("z003" , "x002");
-        m.addAttribute("map" , map);
+        m.addAttribute("map" , map); //給TLD
         return "zx3";
     }
 }
