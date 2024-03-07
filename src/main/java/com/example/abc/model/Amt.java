@@ -9,4 +9,8 @@ public class Amt /*extends User 也可以唷 */ {
     public Amt(){
 
     }
+    public Amt(String id , String money){
+        this.id = id;
+        this.money = money;
+    }
 }
