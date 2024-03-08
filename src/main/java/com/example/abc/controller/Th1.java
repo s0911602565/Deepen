@@ -40,7 +40,7 @@ public class Th1 {
         ModelAndView m = new ModelAndView();
         m.addObject("msg" , "請登入B");
         m.addObject("myObj" , obj);
-        m.setViewName("th1");
+        m.setViewName("th1"); //這是HTML ,轉過去會變成 th1.jsp(實際是th1.html)
         return m;
     }
 }
