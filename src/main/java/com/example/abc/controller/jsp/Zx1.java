@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("zx1")
-public class Zx1 {
+public class Zx1 {//測試
     /**
      http://127.0.0.1:8080/zx1/zx1_method1
      * */
