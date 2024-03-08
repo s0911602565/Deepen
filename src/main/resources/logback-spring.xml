@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
+
+    <!-- part one -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
-                %d{yyyy-MM-dd yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+                <!-- be_use in MyController.java-->
+                %X{be_use} %d{yyyy-MM-dd HH:mm:ss.SSS}  [%thread] %-5level %logger{50} - %msg%n
             </pattern>
         </encoder>
     </appender>
 
+    <!-- part two -->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>D:\\myLog\\sys-%d{yyyy-MM-dd}-%i.log</fileNamePattern>

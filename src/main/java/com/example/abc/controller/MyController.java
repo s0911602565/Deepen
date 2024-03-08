@@ -14,6 +14,9 @@ package com.example.abc.controller;
 
 import com.example.abc.model.Amt;
 import com.example.abc.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,10 +33,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("handle")
 public class MyController {
+    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+
 
     /* http://127.0.0.1:8080/form.html  */
     @RequestMapping
     public String getMessage(@RequestParam(name = "username", required = false, defaultValue = "johnlee") String username, @RequestParam String pwd) {
+        MDC.put("be_use","====location MyController.java ===");
+        logger.info("測試 {}info",5);
+        logger.debug("測試 debug");
+        logger.error("測試 error");
         return "(handle) " + username + "/" + pwd;
     }
 
