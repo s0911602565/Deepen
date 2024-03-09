@@ -10,13 +10,14 @@ package com.example.abc.controller;
 @RequestHeader 標頭-資訊
 @DateTimeFormat 日期格式(搜尋 getMessage9)
 @ModelAttribute(沒參數) / (有參數)
+@ConfigurationProperties prefix
 * */
 
-import com.example.abc.model.Amt;
-import com.example.abc.model.User;
+import com.example.abc.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,14 +36,16 @@ import java.util.Map;
 public class MyController {
     private static final Logger logger = LoggerFactory.getLogger(MyController.class);
 
+    @Autowired
+    UseTheValue useTheValue;
 
     /* http://127.0.0.1:8080/form.html  */
     @RequestMapping
     public String getMessage(@RequestParam(name = "username", required = false, defaultValue = "johnlee") String username, @RequestParam String pwd) {
-        MDC.put("be_use","====location MyController.java ===");
-        logger.info("測試 {}info",5);
-        logger.debug("測試 debug");
-        logger.error("測試 error");
+        MDC.put("my_tag_event","====location MyController.java ===");
+        logger.info("have {} info",5);
+        logger.debug("debug");
+        logger.error("error");
         return "(handle) " + username + "/" + pwd;
     }
 
@@ -264,5 +267,32 @@ public class MyController {
         return new ResponseEntity<User>(user , HttpStatus.OK);
         //return new ResponseEntity<User>(user , HttpStatus.CREATED);
 
+    }
+
+    /*
+    目的:ConfigurationProperties prefix
+    http://127.0.0.1:8080/handle/getgj
+    */
+
+    @RequestMapping("/getgj")
+    public void getGJ() {
+        System.out.println(useTheValue.getId() + " " + useTheValue.getName());
+        System.out.println("-- Hobby");
+        useTheValue.getHobby().forEach(x->{
+            System.out.println(x);
+        });
+        System.out.println("-- Food");
+        Map m = useTheValue.getFood();
+        for(Object key : m.keySet()){
+            System.out.println("(key) "+key + " (value) " + m.get(key));
+        }
+        System.out.println("-- Drink");
+        useTheValue.getDrink().forEach(x->{
+            System.out.println(x);
+        });
+        System.out.println("-- Obj");
+        for (UseTheValue2 obj2 :useTheValue.getObj2()){
+            System.out.println(obj2.getCode() +" " + obj2.getCity() + " " + obj2.getHaveFun());
+        }
     }
 }

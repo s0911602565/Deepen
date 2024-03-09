@@ -1,0 +1,32 @@
+spring:
+  mvc:
+    view: {prefix: /WEB-INF/jsp/ , suffix: .jsp}
+  main:
+    banner-mode: off #console icon
+  profiles:
+    active: dev,prod #logback-spring.xml
+
+# Value Config
+my:
+  id: 0
+  name: max
+  food:
+    meat: pizza
+    dessert: cake
+  hobby: [netflix,music]
+  drink:
+    - coffee
+    - tea
+  obj2:
+    - code: 407
+      city: 台中
+      have-fun: true
+    - code: 616
+      city: 嘉義
+      have-fun: false
+
+
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /note
