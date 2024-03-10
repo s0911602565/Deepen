@@ -7,7 +7,7 @@ spring:
     active: dev,prod #logback-spring.xml
 
 # Value Config
-my:
+hard:
   id: 0
   name: max
   food:
@@ -25,6 +25,9 @@ my:
       city: 嘉義
       have-fun: false
 
+basic:
+  username_1: "john"
+  password_2: "12345678"
 
 #server:
 #  port: 8080

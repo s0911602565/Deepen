@@ -6,11 +6,13 @@ package com.example.abc.controller;
 @RequestParam
 @PathVariable
 @RequestBody (json)
+@ResponseBody
 @RequestPart 上傳檔案
 @RequestHeader 標頭-資訊
 @DateTimeFormat 日期格式(搜尋 getMessage9)
 @ModelAttribute(沒參數) / (有參數)
 @ConfigurationProperties prefix
+@Value
 * */
 
 import com.example.abc.model.*;
@@ -37,7 +39,10 @@ public class MyController {
     private static final Logger logger = LoggerFactory.getLogger(MyController.class);
 
     @Autowired
-    UseTheValue useTheValue;
+    UseTheValue1_Hard hard;
+
+    @Autowired
+    UseTheValue_Basic basic;
 
     /* http://127.0.0.1:8080/form.html  */
     @RequestMapping
@@ -156,10 +161,10 @@ public class MyController {
     * */
     @RequestMapping("what")
     @ResponseBody
-    public String getWhat(@ModelAttribute User user){
+    public User getWhat(@ModelAttribute User user){
         System.out.println("getWhat " +user.getUsername());
         System.out.println("getWhat " +user.getPwd());
-        return "getWhat";
+        return user;
     }
 
 
@@ -269,30 +274,43 @@ public class MyController {
 
     }
 
+
     /*
-    目的:ConfigurationProperties prefix
+    目的: Value
+    http://127.0.0.1:8080/handle/getgj2
+    */
+    @RequestMapping("/getgj2")
+    public void getGJ2() {
+        //UseTheValue_Basic v = new UseTheValue_Basic();
+        System.out.println(basic.getUsername());
+        System.out.println(basic.getPassword());
+    }
+
+    /*
+    目的: ConfigurationProperties (prefix)
     http://127.0.0.1:8080/handle/getgj
     */
 
     @RequestMapping("/getgj")
     public void getGJ() {
-        System.out.println(useTheValue.getId() + " " + useTheValue.getName());
+        System.out.println(hard.getId() + " " + hard.getName());
         System.out.println("-- Hobby");
-        useTheValue.getHobby().forEach(x->{
+        hard.getHobby().forEach(x->{
             System.out.println(x);
         });
         System.out.println("-- Food");
-        Map m = useTheValue.getFood();
+        Map m = hard.getFood();
         for(Object key : m.keySet()){
             System.out.println("(key) "+key + " (value) " + m.get(key));
         }
         System.out.println("-- Drink");
-        useTheValue.getDrink().forEach(x->{
+        hard.getDrink().forEach(x->{
             System.out.println(x);
         });
         System.out.println("-- Obj");
-        for (UseTheValue2 obj2 :useTheValue.getObj2()){
+        for (UseTheValue2_Hard obj2 :hard.getObj2()){
             System.out.println(obj2.getCode() +" " + obj2.getCity() + " " + obj2.getHaveFun());
         }
     }
+
 }
