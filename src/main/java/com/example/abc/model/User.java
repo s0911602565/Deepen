@@ -20,12 +20,14 @@ public class User {
     private String username;
     private String pwd;
     private String pwd2;
+    private String[] arr;
+    private Amt amt;
 
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDate birthdayA;
     public User(){
-        this.setUsername("測試 ModelAttribute username");
-        this.setPwd("測試 ModelAttribute pwd");
+        this.setUsername("test123");
+        this.setPwd("test321");
     }
 
 }

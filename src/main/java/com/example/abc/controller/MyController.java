@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("handle")
@@ -74,7 +75,7 @@ public class MyController {
     @RequestMapping("/json")
     public ResponseEntity<User> getJson() {
         User user2 = new User();
-        user2.setPwd("123123");
+        user2.setPwd("()");
         user2.setUsername("john1ee");
         return new ResponseEntity<User>(user2, HttpStatus.OK);
     }
@@ -96,19 +97,31 @@ public class MyController {
 
     /*
     以下貼到post man
-    使用網址取得資訊  http://127.0.0.1:8080/handle/json7
+    http://127.0.0.1:8080/handle/json7
     [
         {
             "pwd": "100",
-            "username": "嗨1"
+            "username": "嗨1",
+            "arr":["1" , "2" , "a"],
+            "amt":{
+                "money":"50"
+            }
         },
         {
             "pwd": "200",
-            "username": "嗨2"
+            "username": "嗨2",
+            "arr":["100" , "200" , "b"],
+            "amt":{
+                "money":"60"
+            }
         },
         {
             "pwd": "300",
-            "username": "嗨3"
+            "username": "嗨3",
+            "arr":["0" , "二" , "c"],
+            "amt":{
+                "money":"70"
+            }
         }
     ]
     */
@@ -119,6 +132,9 @@ public class MyController {
             System.out.println("getJson7:" + u.getUsername());
             System.out.println("getJson7:" + u.getPwd());
             System.out.println("-------");
+            Amt m = u.getAmt();
+            System.out.println(m.getMoney());
+
         }
 
     }
@@ -157,15 +173,23 @@ public class MyController {
     目的: 建立user類別
     乾淨的
     @ModelAttribute User user 左邊等同 ->  new User()
-    http://127.0.0.1:8080/handle/what
+    http://127.0.0.1:8080/handle/what/test123
+
+    重要: PathVariable 的宣告名稱 不能跟User的欄位名稱一樣...
+    舉例PathVariable(_username) vs User(username) 這樣會造成null(不知道原因)
+
     * */
-    @RequestMapping("what")
+    @RequestMapping("what/{_name}")
     @ResponseBody
-    public User getWhat(@ModelAttribute User user){
-        System.out.println("getWhat " +user.getUsername());
-        System.out.println("getWhat " +user.getPwd());
-        return user;
+    public Optional<User> getWhat(
+            @PathVariable String _name,
+            @ModelAttribute User user){
+        if(user.getUsername().equals(_name))
+            return Optional.of(user);
+
+        return Optional.empty();
     }
+
 
 
     /*
