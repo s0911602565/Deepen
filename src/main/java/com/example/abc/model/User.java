@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor //帶參數建構式
@@ -21,7 +22,7 @@ public class User {
     private String pwd;
     private String pwd2;
     private String[] arr;
-    private Amt amt;
+    private List<Amt> amt;
 
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDate birthdayA;

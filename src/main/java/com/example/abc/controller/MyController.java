@@ -98,30 +98,55 @@ public class MyController {
     /*
     以下貼到post man
     http://127.0.0.1:8080/handle/json7
+
+    * (先安裝httpie、設定PATH,把my.json丟到D槽, 打開cmd ,輸入->) http POST http://127.0.0.1:8080/handle/json7 < my.json
+    [] = List 或 Array
+    {} = json , ex: User.class
     [
         {
             "pwd": "100",
             "username": "嗨1",
             "arr":["1" , "2" , "a"],
-            "amt":{
-                "money":"50"
-            }
+            "amt":[
+                {
+                "id" :"1",
+                "money":"51"
+                },
+                {
+                "id" :"2",
+                "money":"52"
+                }
+            ]
         },
         {
             "pwd": "200",
             "username": "嗨2",
             "arr":["100" , "200" , "b"],
-            "amt":{
-                "money":"60"
-            }
+            "amt":[
+                {
+                "id" :"a",
+                "money":"5a"
+                },
+                {
+                "id" :"b",
+                "money":"5b"
+                }
+            ]
         },
         {
             "pwd": "300",
             "username": "嗨3",
             "arr":["0" , "二" , "c"],
-            "amt":{
-                "money":"70"
-            }
+            "amt":[
+                {
+                "id" :"c",
+                "money":"5c"
+                },
+                {
+                "id" :"d",
+                "money":"5d"
+                }
+            ]
         }
     ]
     */
@@ -131,10 +156,15 @@ public class MyController {
         for(User u : user){
             System.out.println("getJson7:" + u.getUsername());
             System.out.println("getJson7:" + u.getPwd());
-            System.out.println("-------");
-            Amt m = u.getAmt();
-            System.out.println(m.getMoney());
+            for(String r : u.getArr()){
+                System.out.println("arr: " + r);
+            }
+            List<Amt> m = u.getAmt();
+            for(Amt m2 : m ){
+                System.out.println("Amt:"+ m2.getId() + "/"+m2.getMoney());
+            }
 
+            System.out.println("--------End----------");
         }
 
     }
