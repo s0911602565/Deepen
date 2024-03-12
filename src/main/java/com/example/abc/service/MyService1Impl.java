@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class MyService1Impl implements MyService1{
 
@@ -13,6 +15,11 @@ public class MyService1Impl implements MyService1{
     private MyService2 m2;
     public MyService2 getMyService2(){
        return m2;
+    }
+
+    @PostConstruct
+    public void initSomething(){
+        System.out.println("init...");
     }
 
     @Override
