@@ -13,6 +13,7 @@ package com.example.abc.controller;
 @ModelAttribute(沒參數) / (有參數)
 @ConfigurationProperties prefix
 @Value
+@PostConstruct
 * */
 
 import com.example.abc.model.*;
