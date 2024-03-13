@@ -25,12 +25,19 @@ public class ConnDB {
         obj.setType("Toyota");
         carRepository.save(obj);
     }
-
+    /*
+    127.0.0.1:8080/db/c2
+    */
     @RequestMapping("c2")
     public void doC2() throws Exception{
-        Optional<Car> obj = carRepository.findById(1);
-        Car car = obj.isPresent() ? obj.get() : new Car();
-
+        Optional<Car> obj = carRepository.findById(3);
+        Car car = null;
+        if(obj.isPresent()){
+            car = obj.get();
+        }else{
+            car = new Car(0 , "測試" , "high quality");
+            carRepository.save(car);
+        }
         Toyota toyota = new Toyota();
         toyota.setCars(car);
         toyota.setName("atis");
