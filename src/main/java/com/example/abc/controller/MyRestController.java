@@ -37,8 +37,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("handle")
-public class MyController {
-    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+public class MyRestController {
+    private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
 
     @Autowired
     UseTheValue1_Hard hard;
