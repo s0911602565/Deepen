@@ -17,6 +17,7 @@ public class MyService1Impl implements MyService1{
        return m2;
     }
 
+    //啟動前初始化
     @PostConstruct
     public void initSomething(){
         System.out.println("init...");

@@ -17,6 +17,9 @@ package com.example.abc.controller;
 * */
 
 import com.example.abc.model.*;
+import com.example.abc.sql.dao.CarRepository;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -27,10 +30,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -103,53 +109,7 @@ public class MyRestController {
     * (先安裝httpie、設定PATH,把my.json丟到D槽, 打開cmd ,輸入->) http POST http://127.0.0.1:8080/handle/json7 < my.json
     [] = List 或 Array
     {} = json , ex: User.class
-    [
-        {
-            "pwd": "100",
-            "username": "嗨1",
-            "arr":["1" , "2" , "a"],
-            "amt":[
-                {
-                "id" :"1",
-                "money":"51"
-                },
-                {
-                "id" :"2",
-                "money":"52"
-                }
-            ]
-        },
-        {
-            "pwd": "200",
-            "username": "嗨2",
-            "arr":["100" , "200" , "b"],
-            "amt":[
-                {
-                "id" :"a",
-                "money":"5a"
-                },
-                {
-                "id" :"b",
-                "money":"5b"
-                }
-            ]
-        },
-        {
-            "pwd": "300",
-            "username": "嗨3",
-            "arr":["0" , "二" , "c"],
-            "amt":[
-                {
-                "id" :"c",
-                "money":"5c"
-                },
-                {
-                "id" :"d",
-                "money":"5d"
-                }
-            ]
-        }
-    ]
+    引用 my.json
     */
 
     @RequestMapping("/json7")
@@ -368,4 +328,29 @@ public class MyRestController {
         }
     }
 
+    @RequestMapping("getgx2")
+    public Iterable<User> getGx2(){
+        List<User> list = new ArrayList<User>();
+        for(int i = 0 ; i < 5 ; i++){
+            User u = new User();
+            u.setUsername("john"+i);
+            list.add(u);
+        }
+        return list;
+    }
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    @RequestMapping("getgx3")
+    public ResponseEntity<Iterable<User>> getGJ3()throws Exception{
+        ResponseEntity  r = restTemplate.getForEntity("http://127.0.0.1:8080/handle/getgx2", List.class);
+        List lists = (List)r.getBody();
+        List<User> data = new ArrayList<User>();
+        for(Object obj : lists){
+            JSONObject json = JSONObject.fromObject(obj);
+            User user = new User();
+            user.setUsername(json.get("username").toString());
+            data.add(user);
+        }
+        return new ResponseEntity<Iterable<User>>(data , HttpStatus.OK);
+    }
 }

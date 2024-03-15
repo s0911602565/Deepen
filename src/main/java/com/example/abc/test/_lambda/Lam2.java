@@ -21,11 +21,13 @@ public class Lam2 {
                 .map(Amt::getMoney)
                 .collect(Collectors.toList());
 
+        //組合出List
         list.forEach(x->{
             System.out.println("金額:" + x);
         });
 
-        Set<String> set =Stream.of("a","b","c").collect(Collectors.toSet());
+        //組合出Set
+        Set<String> set = Stream.of("a","b","c").collect(Collectors.toSet());
         set.forEach( (x)->{
             System.out.println("set :"+x);
         });
@@ -34,6 +36,8 @@ public class Lam2 {
         map.put("a" , "b");
         map.put("a2" , "b2");
         map.put("a3" , "b3");
+
+        //使用 () ->
         map.forEach( (k,v) ->{
             System.out.println("key:"+k + " value:" +v);
         });
