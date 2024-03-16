@@ -3,6 +3,7 @@ package com.example.abc.model;
 import com.example.abc.controller.Th3;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor //帶參數建構式
 @Th3(firs = "pwd" , second = "pwd2" , msg = "密碼1、2需要相同!")
 //@NoArgsConstructor //不帶參數建構式 (我已經寫一個沒參數建構式了)
-
+//@RequiredArgsConstructor 要搭配@NonNull(不能null) , 被標示的欄位,建構式會按照順序
 public class User {
+
     @NotBlank(message="使用者為空")
     @Length(min = 4 , max = 6 , message = "使用者長度介於4到6字元")
     private String username;

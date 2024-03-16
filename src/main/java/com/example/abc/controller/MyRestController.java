@@ -17,6 +17,7 @@ package com.example.abc.controller;
 * */
 
 import com.example.abc.model.*;
+import com.example.abc.sql.claasic.Car;
 import com.example.abc.sql.dao.CarRepository;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -32,6 +33,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -46,11 +48,9 @@ import java.util.Optional;
 public class MyRestController {
     private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
 
-    @Autowired
-    UseTheValue1_Hard hard;
-
-    @Autowired
-    UseTheValue_Basic basic;
+    @Autowired UseTheValue1_Hard hard;
+    @Autowired UseTheValue_Basic basic;
+    @Autowired CarRepository carRepository;
 
     /* http://127.0.0.1:8080/form.html  */
     @RequestMapping
@@ -328,12 +328,12 @@ public class MyRestController {
         }
     }
 
-    @RequestMapping("getgx2")
+    @RequestMapping("objlistener")
     public Iterable<User> getGx2(){
         List<User> list = new ArrayList<User>();
         for(int i = 0 ; i < 5 ; i++){
             User u = new User();
-            u.setUsername("john"+i);
+            u.setUsername("round_"+i);
             list.add(u);
         }
         return list;
@@ -353,4 +353,38 @@ public class MyRestController {
         }
         return new ResponseEntity<Iterable<User>>(data , HttpStatus.OK);
     }
+
+    @RequestMapping("items/{isSave}")
+    public List<Car> setItems(@PathVariable String isSave){
+        return List.of(
+                new Car("car1" , "excellent"),
+                new Car("car2" , "top")
+        );
+    }
+
+    /*
+    127.0.0.1:8080/handle/save_item
+     */
+    @RequestMapping("save_item")
+    public void saveItems()throws Exception{
+        WebClient web = WebClient.create("http://127.0.0.1:8080/handle/items/Y");
+        web.
+            get().
+            retrieve().
+            bodyToFlux(Car.class).
+            toStream().
+            forEach(carRepository ::save);
+
+        List list = carRepository.getAllCarData2("car2" , "top");
+        System.out.println(list.size());
+        for(int i = 0 ; i < list.size() ; i++){
+            Map map = (Map)list.get(i);
+            System.out.println(map.get("name")+" "+map.get("type"));
+        }
+
+
+
+    }
+
+
 }
