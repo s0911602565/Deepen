@@ -319,12 +319,12 @@ public class MyRestController {
     @RequestMapping("objListener")
     public Iterable<User> setListener(){
         List<User> list = new ArrayList<User>();
-        for(int i = 0 ; i < 5 ; i++){
+        for(int i = 0 ; i < 5 ; i++)
             list.add(new User("round_"+i));
-        }
+
         return list;
     }
-    private final RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
     @RequestMapping("getCells")
     public ResponseEntity<Iterable<User>> setCells()throws Exception{
         return impView( (DAY) -> {
@@ -337,13 +337,22 @@ public class MyRestController {
                 data.add( new User(_userName) );
             }
             return new ResponseEntity<Iterable<User>>(data , HttpStatus.OK);
-        });
+
+        }, Calendar.SHORT);
+
+        //MakeData m1 = (DAY) -> new ResponseEntity<Iterable<User>>(new ArrayList<User>()  , HttpStatus.OK);
+        //MakeData m2 = (DAY) -> MyRestController.genView(DAY);
+        //MakeData m3 = MyRestController::genView;
     }
 
-    public static ResponseEntity<Iterable<User>> impView(MakeData m){
-        int DAY = Calendar.DAY_OF_WEEK;
+    public static ResponseEntity<Iterable<User>> impView(MakeData m , int DAY){
         return m.setJson(DAY);
     }
+
+    public static ResponseEntity<Iterable<User>> genView(int DAY){
+        return null;
+    }
+
 
     @RequestMapping("items/{isSave}")
     public List<Car> setItems(@PathVariable String isSave)throws Exception{
@@ -368,9 +377,5 @@ public class MyRestController {
             forEach(carRepository :: save);
 
         List list = carRepository.getAllCarData2("car2" , "lev1");
-        System.out.println(list.size());
     }
-
-
-
 }
