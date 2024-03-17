@@ -28,6 +28,10 @@ public class User {
 
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     private LocalDate birthdayA;
+
+
+
+
     public User(){
         this.setUsername("test123");
         this.setPwd("test321");

@@ -19,6 +19,8 @@ package com.example.abc.controller;
 import com.example.abc.model.*;
 import com.example.abc.sql.claasic.Car;
 import com.example.abc.sql.dao.CarRepository;
+import com.example.abc.test._lambda.MakeData;
+import lombok.SneakyThrows;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -38,10 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("handle")
@@ -54,9 +53,12 @@ public class MyRestController {
 
     /* http://127.0.0.1:8080/form.html  */
     @RequestMapping
-    public String getMessage(@RequestParam(name = "username", required = false, defaultValue = "johnlee") String username, @RequestParam String pwd) {
+    public String getMessage(
+            @RequestParam(name = "username", required = false, defaultValue = "johnlee") String username,
+            @RequestParam String pwd) {
         MDC.put("my_tag_event","====location MyController.java ===");
-        logger.info("have {} info",5);
+        int count = 1;
+        logger.info("have {} info", count);
         logger.debug("debug");
         logger.error("error");
         return "(handle) " + username + "/" + pwd;
@@ -102,32 +104,18 @@ public class MyRestController {
     }
 
 
-    /*
-    以下貼到post man
-    http://127.0.0.1:8080/handle/json7
-
-    * (先安裝httpie、設定PATH,把my.json丟到D槽, 打開cmd ,輸入->) http POST http://127.0.0.1:8080/handle/json7 < my.json
-    [] = List 或 Array
-    {} = json , ex: User.class
-    引用 my.json
-    */
-
+    /*http POST http://127.0.0.1:8080/handle/json7 < my.json */
     @RequestMapping("/json7")
     public void getJson7(@RequestBody List<User> user) {
         for(User u : user){
-            System.out.println("getJson7:" + u.getUsername());
-            System.out.println("getJson7:" + u.getPwd());
-            for(String r : u.getArr()){
-                System.out.println("arr: " + r);
-            }
+            System.out.println(u.getUsername()+"/"+u.getPwd());
+            for(String r : u.getArr())
+                System.out.println(r);
             List<Amt> m = u.getAmt();
-            for(Amt m2 : m ){
-                System.out.println("Amt:"+ m2.getId() + "/"+m2.getMoney());
-            }
-
-            System.out.println("--------End----------");
+            for(Amt m2 : m )
+                System.out.println(m2.getId()+"/"+m2.getMoney());
+            System.out.println("---");
         }
-
     }
 
     /*
@@ -328,63 +316,61 @@ public class MyRestController {
         }
     }
 
-    @RequestMapping("objlistener")
-    public Iterable<User> getGx2(){
+    @RequestMapping("objListener")
+    public Iterable<User> setListener(){
         List<User> list = new ArrayList<User>();
         for(int i = 0 ; i < 5 ; i++){
-            User u = new User();
-            u.setUsername("round_"+i);
-            list.add(u);
+            list.add(new User("round_"+i));
         }
         return list;
     }
-
     private final RestTemplate restTemplate = new RestTemplate();
-    @RequestMapping("getgx3")
-    public ResponseEntity<Iterable<User>> getGJ3()throws Exception{
-        ResponseEntity  r = restTemplate.getForEntity("http://127.0.0.1:8080/handle/getgx2", List.class);
-        List lists = (List)r.getBody();
-        List<User> data = new ArrayList<User>();
-        for(Object obj : lists){
-            JSONObject json = JSONObject.fromObject(obj);
-            User user = new User();
-            user.setUsername(json.get("username").toString());
-            data.add(user);
-        }
-        return new ResponseEntity<Iterable<User>>(data , HttpStatus.OK);
+    @RequestMapping("getCells")
+    public ResponseEntity<Iterable<User>> setCells()throws Exception{
+        return impView( (DAY) -> {
+            ResponseEntity  r = restTemplate.getForEntity("http://127.0.0.1:8080/handle/objListener", List.class);
+            List lists = (List)r.getBody();
+            List<User> data = new ArrayList<User>();
+            for(Object obj : lists){
+                JSONObject json = JSONObject.fromObject(obj);
+                String _userName = DAY + json.get("username").toString();
+                data.add( new User(_userName) );
+            }
+            return new ResponseEntity<Iterable<User>>(data , HttpStatus.OK);
+        });
+    }
+
+    public static ResponseEntity<Iterable<User>> impView(MakeData m){
+        int DAY = Calendar.DAY_OF_WEEK;
+        return m.setJson(DAY);
     }
 
     @RequestMapping("items/{isSave}")
-    public List<Car> setItems(@PathVariable String isSave){
-        return List.of(
-                new Car("car1" , "excellent"),
-                new Car("car2" , "top")
-        );
+    public List<Car> setItems(@PathVariable String isSave)throws Exception{
+        if(isSave.equals("Y")){
+            return List.of(
+                    new Car("car1" , "lev1"),
+                    new Car("car2" , "lev2")
+            );
+        }
+        return null;
     }
 
-    /*
-    127.0.0.1:8080/handle/save_item
-     */
     @RequestMapping("save_item")
-    public void saveItems()throws Exception{
+    @SneakyThrows(Exception.class)
+    public void saveItems(){
         WebClient web = WebClient.create("http://127.0.0.1:8080/handle/items/Y");
         web.
             get().
             retrieve().
             bodyToFlux(Car.class).
             toStream().
-            forEach(carRepository ::save);
+            forEach(carRepository :: save);
 
-        List list = carRepository.getAllCarData2("car2" , "top");
+        List list = carRepository.getAllCarData2("car2" , "lev1");
         System.out.println(list.size());
-        for(int i = 0 ; i < list.size() ; i++){
-            Map map = (Map)list.get(i);
-            System.out.println(map.get("name")+" "+map.get("type"));
-        }
-
-
-
     }
+
 
 
 }

@@ -35,7 +35,7 @@ public class ConnDB {
         if(obj.isPresent()){
             car = obj.get();
         }else{
-            car = new Car(0 , "測試" , "high quality");
+            car = new Car("car3" , "lev3");
             carRepository.save(car);
         }
         Toyota toyota = new Toyota();
