@@ -32,5 +32,8 @@ public class User {
         this.setUsername("test123");
         this.setPwd("test321");
     }
+    public User(String username){
+        this.username = username;
+    }
 
 }
