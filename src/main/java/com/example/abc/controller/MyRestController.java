@@ -21,7 +21,6 @@ import com.example.abc.sql.claasic.Car;
 import com.example.abc.sql.dao.CarRepository;
 import com.example.abc.test._lambda.MakeData;
 import lombok.SneakyThrows;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +35,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -47,7 +45,8 @@ import java.util.*;
 public class MyRestController {
     private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
 
-    @Autowired UseTheValue1_Hard hard;
+    @Autowired
+    UseTheValue1_Demo hard;
     @Autowired UseTheValue_Basic basic;
     @Autowired CarRepository carRepository;
 
@@ -311,7 +310,7 @@ public class MyRestController {
             System.out.println(x);
         });
         System.out.println("-- Obj");
-        for (UseTheValue2_Hard obj2 :hard.getObj2()){
+        for (UseTheValue2_Demo obj2 :hard.getObj2()){
             System.out.println(obj2.getCode() +" " + obj2.getCity() + " " + obj2.getHaveFun());
         }
     }

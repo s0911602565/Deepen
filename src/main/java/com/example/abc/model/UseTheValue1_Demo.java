@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-@ConfigurationProperties(prefix = "hard")
+@ConfigurationProperties(prefix = "demo")
 @Data
-public class UseTheValue1_Hard {
+public class UseTheValue1_Demo {
     private int id;
     private String name;
     private List hobby;
     private List drink;
     private Map food;
-    private List<UseTheValue2_Hard> obj2;
+    private List<UseTheValue2_Demo> obj2;
 }
