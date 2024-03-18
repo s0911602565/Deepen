@@ -19,7 +19,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
 # Value Config
-hard:
+demo:
   id: 0
   name: max
   food:
@@ -39,7 +39,7 @@ hard:
 
 basic:
   username_1: "john"
-  password_2: "12345678"
+  password_2: "321"
 
 #server:
 #  port: 8080
