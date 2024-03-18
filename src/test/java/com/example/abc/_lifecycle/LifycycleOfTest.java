@@ -2,7 +2,7 @@ package com.example.abc._lifecycle;
 
 import org.junit.jupiter.api.*;
 
-public class MyLifycycle {
+public class LifycycleOfTest {
 
     @Disabled
     @Test public void getTest1(){System.out.println("冠上 @Disabled 不被執行");}
