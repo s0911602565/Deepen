@@ -318,9 +318,7 @@ public class MyRestController {
     @RequestMapping("objListener")
     public Iterable<User> setListener(){
         List<User> list = new ArrayList<User>();
-        for(int i = 0 ; i < 5 ; i++)
-            list.add(new User("round_"+i));
-
+        for(int i = 0 ; i < 5 ; i++)  list.add(new User("round_"+i));
         return list;
     }
     private static final RestTemplate restTemplate = new RestTemplate();
@@ -339,23 +337,16 @@ public class MyRestController {
 
         }, Calendar.SHORT);
 
-        //MakeData m1 = (DAY) -> new ResponseEntity<Iterable<User>>(new ArrayList<User>()  , HttpStatus.OK);
-        //MakeData m2 = (DAY) -> MyRestController.genView(DAY);
         //MakeData m3 = MyRestController::genView;
+        //return m3.setJson(1);
     }
-
-    public static ResponseEntity<Iterable<User>> impView(MakeData m , int DAY){
-        return m.setJson(DAY);
-    }
-
-    public static ResponseEntity<Iterable<User>> genView(int DAY){
-        return null;
-    }
+    public static ResponseEntity<Iterable<User>> impView(MakeData m , int DAY){  return m.setJson(DAY);  }
+    public static ResponseEntity<Iterable<User>> genView(int DAY){ return null; }
 
 
-    @RequestMapping("items/{isSave}")
-    public List<Car> setItems(@PathVariable String isSave)throws Exception{
-        if(isSave.equals("Y")){
+    @RequestMapping("items/{status}")
+    public List<Car> setItems(@PathVariable String status)throws Exception{
+        if(status.equals("doSave")){
             return List.of(
                     new Car("car1" , "lev1"),
                     new Car("car2" , "lev2")
@@ -367,13 +358,15 @@ public class MyRestController {
     @RequestMapping("save_item")
     @SneakyThrows(Exception.class)
     public void saveItems(){
-        WebClient web = WebClient.create("http://127.0.0.1:8080/handle/items/Y");
+        WebClient web = WebClient.create("http://127.0.0.1:8080/handle/items");
         web.
-            get().
-            retrieve().
-            bodyToFlux(Car.class).
-            toStream().
-            forEach(carRepository :: save);
+                get().
+                uri("/doSave").
+                retrieve().
+                bodyToFlux(Car.class).
+                filter(obj -> !obj.getName().isEmpty()).
+                toStream().
+                forEach(carRepository :: save);
 
         List list = carRepository.getAllCarData2("car2" , "lev1");
     }
