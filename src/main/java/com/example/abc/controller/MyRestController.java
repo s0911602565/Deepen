@@ -17,7 +17,7 @@ package com.example.abc.controller;
 * */
 
 import com.example.abc.model.*;
-import com.example.abc.sql.claasic.Car;
+import com.example.abc.sql.entity.Car;
 import com.example.abc.sql.dao.CarRepository;
 import com.example.abc.test._lambda.MakeData;
 import lombok.SneakyThrows;
@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -43,25 +44,19 @@ import java.util.*;
 @RestController
 @RequestMapping("handle")
 public class MyRestController {
+
     private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
+
+    @RequestMapping
+    public void getMessage() {
+        MDC.put("my_tag_event","====location MyController.java ===");
+        logger.info("have {} info", 3);
+    }
 
     @Autowired
     UseTheValue1_Demo hard;
     @Autowired UseTheValue_Basic basic;
     @Autowired CarRepository carRepository;
-
-    /* http://127.0.0.1:8080/form.html  */
-    @RequestMapping
-    public String getMessage(
-            @RequestParam(name = "username", required = false, defaultValue = "johnlee") String username,
-            @RequestParam String pwd) {
-        MDC.put("my_tag_event","====location MyController.java ===");
-        int count = 1;
-        logger.info("have {} info", count);
-        logger.debug("debug");
-        logger.error("error");
-        return "(handle) " + username + "/" + pwd;
-    }
 
     /* http://127.0.0.1:8080/form.html */
     @RequestMapping("/obj")
@@ -102,18 +97,13 @@ public class MyRestController {
         System.out.println("getJson2:" + user.getPwd());
     }
 
-
-    /*http POST http://127.0.0.1:8080/handle/json7 < my.json */
     @RequestMapping("/json7")
     public void getJson7(@RequestBody List<User> user) {
         for(User u : user){
-            System.out.println(u.getUsername()+"/"+u.getPwd());
-            for(String r : u.getArr())
-                System.out.println(r);
             List<Amt> m = u.getAmt();
-            for(Amt m2 : m )
-                System.out.println(m2.getId()+"/"+m2.getMoney());
-            System.out.println("---");
+            for(String r : u.getArr()) System.out.println(r);
+            for(Amt m2 : m )  System.out.println(m2.getId()+"/"+m2.getMoney());
+
         }
     }
 
@@ -192,10 +182,10 @@ public class MyRestController {
     http://127.0.0.1:8080/handle/what3
     * */
     @RequestMapping("what3")
-    public String getWhat3(User user){
-        System.out.println("what3"+user.getUsername());
-        System.out.println("what3"+user.getPwd());
-        return "getWhat3";
+    public ModelAndView getWhat3(){
+        ModelAndView m = new ModelAndView("zx1");
+        m.addObject("user" , "lee");
+        return m;
     }
 
 

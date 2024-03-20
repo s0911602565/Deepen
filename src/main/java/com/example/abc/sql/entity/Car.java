@@ -1,4 +1,4 @@
-package com.example.abc.sql.claasic;
+package com.example.abc.sql.entity;
 
 import lombok.*;
 

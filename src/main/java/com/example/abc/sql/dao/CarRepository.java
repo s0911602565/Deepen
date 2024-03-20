@@ -2,7 +2,7 @@ package com.example.abc.sql.dao;
 
 
 import com.example.abc.sql.BasicRepository;
-import com.example.abc.sql.claasic.Car;
+import com.example.abc.sql.entity.Car;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 

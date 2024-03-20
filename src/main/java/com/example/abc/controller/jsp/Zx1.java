@@ -21,7 +21,7 @@ public class Zx1 {
 
     @RequestMapping("/zx1_method2/{id}")
     public ModelAndView zx1_method2(@PathVariable String id , ModelAndView m){
-        System.out.println("zx1 show id:"+id);
+        System.out.println("Path Variable ID:"+id);
         m.setViewName("zx1");
         return m;
     }

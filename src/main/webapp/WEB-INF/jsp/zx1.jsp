@@ -24,8 +24,13 @@ STEP3
 
 
 <form name="form1" id="form1" action="/zx1/zx1_method2/100" method="post" >
+    <input type="text" id="user" value="${user}">
     <input type="submit" id="btn"  value="按鈕" >
 </form>
 
+
+<%
+    session.setAttribute("carID" , "1");
+%>
 </body>
 </html>

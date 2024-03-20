@@ -1,7 +1,7 @@
 package com.example.abc.sql.connection;
 
-import com.example.abc.sql.claasic.Car;
-import com.example.abc.sql.claasic.Toyota;
+import com.example.abc.sql.entity.Car;
+import com.example.abc.sql.entity.Toyota;
 import com.example.abc.sql.dao.CarRepository;
 import com.example.abc.sql.dao.ToyotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
