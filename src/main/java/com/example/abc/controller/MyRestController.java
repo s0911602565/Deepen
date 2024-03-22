@@ -97,6 +97,22 @@ public class MyRestController {
         System.out.println("getJson2:" + user.getPwd());
     }
 
+    @RequestMapping("/json8")
+    public ResponseEntity<Amt> getJson8(){
+        int[] max = new int []{14,18,25,27,32,37};
+        int[] min = new int []{9,12,18,22,25,28};
+        int[] avg = new int []{90};
+        String[] day = new String []{"2024-03-22","2024-04-22","2024-05-22","2024-06-22","2024-07-22","2024-08-22"};
+        Season season = new Season(max,min,day,avg);
+        return new ResponseEntity<Amt>(new Amt(season) , HttpStatus.OK);
+    }
+
+    @RequestMapping("/json9")
+    public void getJson9() {
+        //測試 post man 的flow 失敗
+    }
+
+
     @RequestMapping("/json7")
     public void getJson7(@RequestBody List<User> user) {
         for(User u : user){
@@ -157,6 +173,8 @@ public class MyRestController {
 
         return Optional.empty();
     }
+
+
 
 
 

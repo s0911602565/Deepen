@@ -1,13 +1,18 @@
 package com.example.abc.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class Amt /*extends User 也可以唷 */ {
+public class Amt {
     private String id;
     private String money;
-    public Amt(){
-
+    private Season season;
+    public Amt(Season season){
+        this.season = season;
     }
     public Amt(String id , String money){
         this.id = id;
