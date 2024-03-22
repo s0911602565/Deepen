@@ -21,6 +21,7 @@ import com.example.abc.sql.entity.Car;
 import com.example.abc.sql.dao.CarRepository;
 import com.example.abc.test._lambda.MakeData;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,18 +44,19 @@ import java.util.*;
 
 @RestController
 @RequestMapping("handle")
+@Slf4j
 public class MyRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
 
     @RequestMapping
     public void getMessage() {
-        MDC.put("my_tag_event","====location MyController.java ===");
+        MDC.put("my_tag_event", "========="+MyRestController.class.getCanonicalName()+"=========");
         logger.info("have {} info", 3);
+        log.info("have {} info" , 2);
     }
 
-    @Autowired
-    UseTheValue1_Demo hard;
+    @Autowired UseTheValue1_Demo demo;
     @Autowired UseTheValue_Basic basic;
     @Autowired CarRepository carRepository;
 
@@ -303,22 +305,22 @@ public class MyRestController {
 
     @RequestMapping("/getgj")
     public void getGJ() {
-        System.out.println(hard.getId() + " " + hard.getName());
+        System.out.println(demo.getId() + " " + demo.getName());
         System.out.println("-- Hobby");
-        hard.getHobby().forEach(x->{
+        demo.getHobby().forEach(x->{
             System.out.println(x);
         });
         System.out.println("-- Food");
-        Map m = hard.getFood();
+        Map m = demo.getFood();
         for(Object key : m.keySet()){
             System.out.println("(key) "+key + " (value) " + m.get(key));
         }
         System.out.println("-- Drink");
-        hard.getDrink().forEach(x->{
+        demo.getDrink().forEach(x->{
             System.out.println(x);
         });
         System.out.println("-- Obj");
-        for (UseTheValue2_Demo obj2 :hard.getObj2()){
+        for (UseTheValue2_Demo obj2 :demo.getObj2()){
             System.out.println(obj2.getCode() +" " + obj2.getCity() + " " + obj2.getHaveFun());
         }
     }
@@ -368,13 +370,13 @@ public class MyRestController {
     public void saveItems(){
         WebClient web = WebClient.create("http://127.0.0.1:8080/handle/items");
         web.
-                get().
-                uri("/doSave").
-                retrieve().
-                bodyToFlux(Car.class).
-                filter(obj -> !obj.getName().isEmpty()).
-                toStream().
-                forEach(carRepository :: save);
+            get().
+            uri("/doSave").
+            retrieve().
+            bodyToFlux(Car.class).
+            filter(obj -> !obj.getName().isEmpty()).
+            toStream().
+            forEach(carRepository :: save);
 
         List list = carRepository.getAllCarData2("car2" , "lev1");
     }

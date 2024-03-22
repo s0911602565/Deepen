@@ -1,3 +1,12 @@
+basic:
+  username_1: "john"
+  password_2: "12345678"
+
+
+
+
+
+
 spring:
   mvc:
     view: {prefix: /WEB-INF/jsp/ , suffix: .jsp}
@@ -8,7 +17,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/day1?serverTimezone=UTC&useSSL=false
     username: root
-    password: 12345678
+    password: ${basic.password_2}
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
@@ -37,9 +46,7 @@ demo:
       city: 嘉義
       have-fun: false
 
-basic:
-  username_1: "john"
-  password_2: "321"
+
 
 #server:
 #  port: 8080
