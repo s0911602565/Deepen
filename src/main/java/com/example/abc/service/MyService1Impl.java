@@ -20,7 +20,7 @@ public class MyService1Impl implements MyService1{
     //啟動前初始化
     @PostConstruct
     public void initSomething(){
-        System.out.println("init...");
+        System.out.println(MyService1Impl.class.getName()+": init...");
     }
 
     @Override
