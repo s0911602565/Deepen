@@ -5,12 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<form name="form1" id="form1" action="/th3/doValid" >
-    username:<input type="text" name="username" /><br>
+<form name="form1" id="form1" action="/checkIt/doValid" >
+    name:<input type="text" name="username" /><br>
+    sex:<input type="text" name="sex" /><br>
     pwd:<input type="text" name="pwd" /><br>
     pwd2:<input type="text" name="pwd2" /><br>
 
     <input type="submit" value="Send" /><br>
 </form>
+${successful}
 </body>
 </html>
