@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,7 +27,8 @@ public class Account {
             });
             return "error_page";
         }
-        return "login";
+        System.out.println("登入成功");
+        return "success_page";
     }
 
     @RequestMapping("c301")
