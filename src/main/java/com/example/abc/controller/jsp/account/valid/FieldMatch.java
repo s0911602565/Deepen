@@ -1,4 +1,4 @@
-package com.example.abc.controller.jsp;
+package com.example.abc.controller.jsp.account.valid;
 //自訂驗證器
 import javax.validation.Constraint;
 import javax.validation.Payload;

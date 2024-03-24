@@ -1,4 +1,4 @@
-package com.example.abc.controller.jsp;
+package com.example.abc.controller.jsp.account.valid;
 
 
 import com.example.abc.model.User;

@@ -1,6 +1,6 @@
 package com.example.abc.model;
 
-import com.example.abc.controller.jsp.FieldMatch;
+import com.example.abc.controller.jsp.account.valid.FieldMatch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
