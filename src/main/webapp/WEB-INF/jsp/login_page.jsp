@@ -7,6 +7,9 @@
 <body>
 登入成功
 <form name="form1" id="form1" action="/checkIt/c301" >
+    ${user.username}<br>
+    ${user.pwd}<br>
+    ${user.pwd2}<br>
     <input type="submit" value="返回" /><br>
 </form>
 </body>
