@@ -18,10 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("db")
 public class ConnDB {
-    @Autowired
-    private CarRepository carRepository;
-    @Autowired
-    private ToyotaRepository toyotaRepository;
+    @Autowired private CarRepository carRepository;
+    @Autowired private ToyotaRepository toyotaRepository;
 
     @RequestMapping("c1")
     public void doC1(){
@@ -51,9 +49,11 @@ public class ConnDB {
         toyotaRepository.save(toyota);
     }
 
+
+    @Autowired CarService carService;
     @Autowired CustomerRepository customerRepository;
     @Autowired SignOrderRepository signOrderRepository;
-    @Autowired CarService carService;
+
 
     @RequestMapping("c3")
     public void testConnectionSQL(){
