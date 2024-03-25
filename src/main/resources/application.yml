@@ -23,9 +23,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # xx_Id -> xxId
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+
 
 # Value Config
 demo:

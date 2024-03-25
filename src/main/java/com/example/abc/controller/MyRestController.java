@@ -17,8 +17,13 @@ package com.example.abc.controller;
 * */
 
 import com.example.abc.model.*;
+import com.example.abc.sql.dao.CustomerRepository;
+import com.example.abc.sql.dao.SignOrderRepository;
+import com.example.abc.sql.dao.service.CarService;
 import com.example.abc.sql.entity.Car;
 import com.example.abc.sql.dao.CarRepository;
+import com.example.abc.sql.entity.Customer;
+import com.example.abc.sql.entity.SignOrder;
 import com.example.abc.test._lambda.MakeData;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +36,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -59,6 +65,7 @@ public class MyRestController {
     @Autowired UseTheValue1_Demo demo;
     @Autowired UseTheValue_Basic basic;
     @Autowired CarRepository carRepository;
+
 
     /* http://127.0.0.1:8080/form.html */
     @RequestMapping("/obj")
@@ -380,4 +387,41 @@ public class MyRestController {
 
         List list = carRepository.getAllCarData2("car2" , "lev1");
     }
+
+    /* http://127.0.0.1:8080/handle/testconnectionSQL */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,11 @@
 package com.example.abc.sql.connection;
 
+import com.example.abc.sql.dao.CustomerRepository;
+import com.example.abc.sql.dao.SignOrderRepository;
+import com.example.abc.sql.dao.service.CarService;
 import com.example.abc.sql.entity.Car;
+import com.example.abc.sql.entity.Customer;
+import com.example.abc.sql.entity.SignOrder;
 import com.example.abc.sql.entity.Toyota;
 import com.example.abc.sql.dao.CarRepository;
 import com.example.abc.sql.dao.ToyotaRepository;
@@ -44,6 +49,17 @@ public class ConnDB {
         toyota.setPrice(80d);
         toyota.setYear("2024");
         toyotaRepository.save(toyota);
+    }
+
+    @Autowired CustomerRepository customerRepository;
+    @Autowired SignOrderRepository signOrderRepository;
+    @Autowired CarService carService;
+
+    @RequestMapping("c3")
+    public void testConnectionSQL(){
+        Optional<Customer> o1 = customerRepository.findById(2);
+        Optional<SignOrder> o2 = signOrderRepository.findById(3);
+        carService.deleteGroup(o1.get() , o2.get());
     }
 }
 
