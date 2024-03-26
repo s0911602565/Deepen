@@ -29,9 +29,16 @@ public interface CarRepository extends BasicRepository<Car, Integer> {
     @Query( value=
             " delete a from Car a "+
             " inner join Customer b on b.id = a.customerId  " +
-            " inner join signorder c on c.id = a.signorderId " +
+            " inner join SignOrder c on c.id = a.signorderId " +
             " where b.id=:c1 and c.id=:c2 " , nativeQuery = true)
     void deleteMany(@Param("c1") Customer customer , @Param("c2") SignOrder signOrder);
+
+
+    @Query( " select count(1) from Car a "+
+            " where 1=1 "+
+            " and a.customer =?1 "+
+            " and a.signOrder =?2 ")
+    int findCount(Customer customer ,SignOrder signOrder);
 }
 
 

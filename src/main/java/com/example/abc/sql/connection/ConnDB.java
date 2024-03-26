@@ -61,5 +61,16 @@ public class ConnDB {
         Optional<SignOrder> o2 = signOrderRepository.findById(3);
         carService.deleteGroup(o1.get() , o2.get());
     }
+
+    /*
+    127.0.0.1:8080/db/c4
+     */
+    @RequestMapping("c4")
+    public void testConnectionSQL2(){
+        Optional<Customer> o1 = customerRepository.findById(3);
+        Optional<SignOrder> o2 = signOrderRepository.findById(3);
+        int count = carService.findGroup(o1.get() , o2.get());
+        System.out.println("count: "+ count);
+    }
 }
 

@@ -172,7 +172,7 @@ public class MyRestController {
     舉例PathVariable(_username) vs User(username) 這樣會造成null(不知道原因)
 
     * */
-    @RequestMapping("what/{_name}")
+    /*@RequestMapping("what/{_name}")
     @ResponseBody
     public Optional<User> getWhat(
             @PathVariable String _name,
@@ -181,7 +181,7 @@ public class MyRestController {
             return Optional.of(user);
 
         return Optional.empty();
-    }
+    }*/
 
 
 
@@ -193,7 +193,7 @@ public class MyRestController {
     @ModelAttribute("mUser") User user 左邊等同 ->  m.addAttribute("mUser" , new User())
     http://127.0.0.1:8080/handle/what2
     * */
-    @RequestMapping("what2")
+    /*@RequestMapping("what2")
     @ResponseBody
     public String getWhat2(@ModelAttribute("mUser")User user , Model m){
         User user2 = (User)m.getAttribute("mUser");
@@ -203,7 +203,7 @@ public class MyRestController {
         }
 
         return "getWhat2";
-    }
+    }*/
 
     /*
     http://127.0.0.1:8080/handle/what3

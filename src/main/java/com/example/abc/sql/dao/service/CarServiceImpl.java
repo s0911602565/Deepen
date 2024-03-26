@@ -26,6 +26,11 @@ public class CarServiceImpl implements CarService{
     public void deleteGroup(Customer customer , SignOrder signOrder){
         carRepository.deleteMany(customer , signOrder);
     }
+
+    @Override
+    public int findGroup(Customer customer , SignOrder signOrder){
+        return carRepository.findCount(customer , signOrder);
+    }
 }
 
 

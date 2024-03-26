@@ -9,4 +9,5 @@ public interface CarService {
     void deleteId(int id , String name);
 
     void deleteGroup(Customer customer , SignOrder signOrder);
+    int findGroup(Customer customer , SignOrder signOrder);
 }
