@@ -6,25 +6,47 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 @SpringBootTest
 class TestByValue {
     @Autowired UseTheValue1_Demo demo;
     @Autowired UseTheValue_Basic basic;
 
-    @Tag("d20240318")
+    @Tag("demo20240318值測試")
     @Test
     @DisplayName("測試seeValues2")
     public void seeValues2() {
       for (UseTheValue2_Demo obj2 : demo.getObj2()) {
-        System.out.printf("%s %s %s \n"
-                , obj2.getCode(), obj2.getCity(), obj2.getHaveFun());
+          assertEquals("台中" , obj2.getCity() , "輸出訊息...");
       }
     }
-    @Tag("sss")
+
+    @Tag("20240318by密碼")
     @Test
     @DisplayName("測試seeValues1")
     public void seeValues1(){
-        System.out.printf(" %s %s \n",basic.getUsername() ,basic.getPassword());
+        assertNotNull(basic.getUsername());
     }
+    /*
+    @BeforeAll
+    @BeforeEach
+    @RepeatedTest
+    */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,9 +7,49 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages("com.example.abc.model") //命名規則:Testxxx.java,否則明確指向類別
-@IncludeTags({"d20240318","sss"})
+@SelectPackages("com.example.abc.model") //命名規則:Test_xx.java, 開頭需要有Test
+@IncludeTags({"demo20240318值測試","20240318by密碼"})
 //@SelectClasses()
-public class TestJU {
+public class TestJU {}
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
