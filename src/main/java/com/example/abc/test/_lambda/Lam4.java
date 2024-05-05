@@ -18,7 +18,10 @@ public class Lam4 {
         list2.forEach(System.out::println);
 
 
-        List list3 = intList.stream().map(x -> x+1 ).collect(Collectors.toSet());
+        List list3 = intList.stream().map(x -> x+1 ).collect(Collectors.toList());
+        list3.forEach(x->{
+            System.out.println(x);
+        });
 
 
     }
