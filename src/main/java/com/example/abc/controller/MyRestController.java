@@ -55,6 +55,7 @@ public class MyRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(MyRestController.class);
 
+    /*http://127.0.0.1:8080/handle */
     @RequestMapping
     public void getMessage() {
         MDC.put("my_tag_event", "========="+MyRestController.class.getCanonicalName()+"=========");
