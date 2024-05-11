@@ -78,7 +78,7 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         -->
-        <!-- JSTL -->
+        <!-- JSTL  [Spring Boot<version>2.7.5</version> 還能夠使用,太高不行...] -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
