@@ -22,6 +22,7 @@ public class RController {
     }
 
     /*
+    要到 pom.xml 註解掉spring-boot-devtools ,就能成功
     127.0.0.1:8080/r1/r3
     */
     @RequestMapping("r3")
