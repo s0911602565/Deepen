@@ -26,7 +26,7 @@ public class RController {
     */
     @RequestMapping("r3")
     public List<BuyItem> findAll(){
-
+        // 要到 pom.xml 註解掉spring-boot-devtools ,就能成功
         List list =  dao.findAll();
         for(int i = 0 ; i < list.size() ; i++){
             BuyItem obj = (BuyItem)list.get(i);
